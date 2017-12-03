@@ -1,64 +1,90 @@
 package system.model;
 
+import javax.persistence.*;
+import java.util.Date;
+import java.util.Set;
+
+@Entity
+@Table(name = "workers")
+
 public class Worker {
-    private String name;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int time_arrival;
-    private int time_departure;
+    @Column(name = "name")
+    private String name;
+    @Column(name = "surname")
+    private String surname;
+    @Column(name = "age")
+    private int age;
 
-    public Worker() {
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "worker")
+    private Set<Card> cards;
+
+
+    public Worker(Class<Worker> workerClass, int i) {
     }
 
-    public Worker(String name, int id, int time_arrival, int time_departure) {
-
+    public Worker(String name, String surname, int age, Set cards) {
         this.name = name;
-        this.id = id;
-        this.time_arrival = time_arrival;
-        this.time_departure = time_departure;
-    }
-
-    public int getId() {
-
-        return id;
-    }
-
-    public int getTime_arrival() {
-        return time_arrival;
-    }
-
-    public int getTime_departure() {
-        return time_departure;
-    }
-
-    public void setName(String name) {
-
-        this.name = name;
+        this.surname = surname;
+        this.age = age;
+        this.cards = cards;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setTime_arrival(int time_arrival) {
-        this.time_arrival = time_arrival;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setTime_departure(int time_departure) {
-        this.time_departure = time_departure;
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setCards(Set<Card> cards) {
+        this.cards = cards;
+    }
+
+
+    public int getId() {
+        return id;
     }
 
     public String getName() {
-
         return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public Set<Card> getCards() {
+        return cards;
     }
 
     @Override
     public String toString() {
         return "Worker{" +
-                "name='" + name + '\'' +
-                ", id=" + id +
-                ", time_arrival=" + time_arrival +
-                ", time_departure=" + time_departure +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", age=" + age +
+                ", cards=" + cards +
                 '}';
     }
+
+
+
+
 }
