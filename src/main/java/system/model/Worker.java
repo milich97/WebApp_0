@@ -21,9 +21,9 @@ public class Worker {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "worker")
     private Set<Card> cards;
 
-
-    public Worker(Class<Worker> workerClass, int i) {
+    public Worker() {
     }
+
 
     public Worker(String name, String surname, int age, Set cards) {
         this.name = name;
@@ -83,8 +83,6 @@ public class Worker {
                 ", cards=" + cards +
                 '}';
     }
-
-
 
 
 }
