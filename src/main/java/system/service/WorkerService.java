@@ -12,13 +12,11 @@ public class WorkerService {
     @Autowired
     private WorkerDao workerDao;
 
-
     public List<ReportCommonView> getResponse() {
         return workerDao.getReport();
     }
 
-
-    public List<ReportCommonView> getResponse(long time) {
-        return workerDao.getReport(time);
+    public List<ReportCommonView> getResponse(String date) {
+        return workerDao.getReport(date);
     }
 }

@@ -14,10 +14,10 @@
 </head>
 <body>
 
-<form modelAttribute="workersFromServer" method="post" action="${pageContext.request.contextPath}/date">
-    <input type="date" name="date" value="date_value">
-    <input type="submit" value="Submit">
-</form>
+<spring:form modelAttribute="dateFromServer" method="post" action="/worker-system/date">
+    <spring:input path="name"/>
+    <spring:button>Enter</spring:button>
+</spring:form>
 
 <h2>Table of information about workers:</h2>
 
@@ -48,6 +48,7 @@
             </c:forEach>
         </ul>
     </c:if>
+
 </table>
 
 

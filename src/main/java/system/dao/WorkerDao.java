@@ -66,25 +66,40 @@ public class WorkerDao {
         return query.list();
     }
 
-    public List<ReportCommonView> getReport(long time) {
+    public List<ReportCommonView> getReport(String date) {
         SessionFactory sessionFactory =
                 new Configuration()
                         .configure()
                         .buildSessionFactory();
         Session session = sessionFactory.openSession();
-        List<Report> report = getList_Date(time, session);
+        List<Report> report = getList(session);
         session.close();
         sessionFactory.close();
-        return getRes(report);
-    }
+        List<ReportCommonView> res = getRes(report);
+        List<ReportCommonView> ans = new ArrayList<ReportCommonView>();
+        for (int i = 0; i < res.size(); i++) {
+            String dateFromWorkerList=res.get(i).getDate();
+            String s=date.substring(0,2)+" ";
+            switch (date.substring(3,5)){
+                case "01" : s+="January";break;
+                case "02" : s+="February";break;
+                case "03" : s+="March";break;
+                case "04" : s+="April";break;
+                case "05" : s+="May";break;
+                case "06" : s+="June";break;
+                case "07" : s+="July";break;
+                case "08" : s+="August";break;
+                case "09" : s+="September";break;
+                case "10" : s+="October";break;
+                case "11" : s+="November";break;
+                case "12" : s+="December";break;
+            }
+            s+=" "+date.substring(6,10);
 
-    private List<Report> getList_Date(long time, Session session) {
-        Query query = session.createQuery(
-                "select new system.hibernate.Report(e.card.worker.name, e.card.worker.surname, e.time,e.exitTime.time) " +
-                        "from EnterTime e " +
-                        "where e.time>time"
-        );
-
-        return query.list();
+            if (s.equals(dateFromWorkerList)) {
+                ans.add(res.get(i));
+            }
+        }
+        return ans;
     }
 }
