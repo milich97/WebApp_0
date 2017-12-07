@@ -17,8 +17,8 @@ public class WorkerService {
         return workerDao.getWorkers();
     }
 
-    public List<ReportCommonView> getResponse(boolean b) {
-        return workerDao.getReport(b);
+    public List<ReportCommonView> getResponse() {
+        return workerDao.getReport();
     }
 
 
