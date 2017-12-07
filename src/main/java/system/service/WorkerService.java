@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import system.dao.WorkerDao;
 import system.hibernate.ReportCommonView;
-import system.model.Worker;
 
 import java.util.List;
 
@@ -13,13 +12,13 @@ public class WorkerService {
     @Autowired
     private WorkerDao workerDao;
 
-    public List<Worker> getWorkers() {
-        return workerDao.getWorkers();
-    }
 
     public List<ReportCommonView> getResponse() {
         return workerDao.getReport();
     }
 
 
+    public List<ReportCommonView> getResponse(long time) {
+        return workerDao.getReport(time);
+    }
 }

@@ -14,16 +14,11 @@
 </head>
 <body>
 
-<%--<form method="post" action="${pageContext.request.contextPath}/date">--%>
-    <%--<input type="date" name="date" value="date_value">--%>
-    <%--<input type="submit" value="Submit">--%>
-<%--</form>--%>
-<%--<spring:form modelAttribute="workersFromServer" method="post" action="/worker-system/check">--%>
+<form modelAttribute="workersFromServer" method="post" action="${pageContext.request.contextPath}/date">
+    <input type="date" name="date" value="date_value">
+    <input type="submit" value="Submit">
+</form>
 
-    <%--<spring:input path="name"/>--%>
-    <%--<spring:input path="surname"/>--%>
-    <%--<spring:button>check user</spring:button>--%>
-<%--</spring:form>--%>
 <h2>Table of information about workers:</h2>
 
 <table border=2 cellpadding=10>
