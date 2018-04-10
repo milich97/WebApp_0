@@ -37,8 +37,9 @@ public class WorkerDao {
         SimpleDateFormat day = new SimpleDateFormat("dd MMMM YYYY", Locale.ENGLISH);
         SimpleDateFormat time = new SimpleDateFormat("hh:mm:ss", Locale.ENGLISH);
         for (int i = 0; i < report.size(); i++) {
-            date1.setTime(report.get(i).getEnterTime());
-            long delta = report.get(i).getExitTime() - date1.getTime();
+            Report report1 = report.get(i);
+            date1.setTime(report1.getEnterTime());
+            long delta = report1.getExitTime() - date1.getTime();
             long h = (delta - delta % 3600000) / 3600000;
             delta -= h * 3600000;
             long m = (delta - delta % 60000) / 60000;
@@ -50,7 +51,7 @@ public class WorkerDao {
             if (s != 0) duration += s + " seconds ";
             if (duration == "") duration = "Less then second!";
 
-            res.add(new ReportCommonView(report.get(i).getName() + " " + report.get(i).getSurname(),
+            res.add(new ReportCommonView(report1.getName() + " " + report1.getSurname(),
                     day.format(date1),
                     time.format(date1),
                     duration));
@@ -93,6 +94,8 @@ public class WorkerDao {
                 case "10" : s+="October";break;
                 case "11" : s+="November";break;
                 case "12" : s+="December";break;
+                default:
+                    // throw IllegalStateException("")
             }
             s+=" "+date.substring(6,10);
 
